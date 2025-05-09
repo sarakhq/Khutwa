@@ -1,6 +1,6 @@
 # Khutwa (خطوة) - AI-Based Adaptive Memory Assessment
 
-LOGO PIC HERE 
+![WhatsApp_Image_2025-05-10_at_01 08 33_3499e24a-removebg-preview](https://github.com/user-attachments/assets/cba133e9-2e82-4ce8-9170-54a84c17666a)
 
 ## Overview
 
@@ -41,7 +41,10 @@ geometric shapes dataset/
 
 This game assesses long-term visual memory by testing a child's ability to recognize previously seen geometric shapes.
 
-GAMEPLAY PIC HERE 
+![WhatsApp Image 2025-05-10 at 01 24 28_9959967a](https://github.com/user-attachments/assets/b787e43f-06e9-43ec-81e2-29839189af98)
+![WhatsApp Image 2025-05-10 at 01 25 04_c41da7bf](https://github.com/user-attachments/assets/de8345d2-2d8f-4635-897a-a831dd087ff4)
+![WhatsApp Image 2025-05-10 at 01 26 53_9dd24688](https://github.com/user-attachments/assets/8ffa753f-46bc-4d60-ad72-475290f3ccd7)
+![WhatsApp Image 2025-05-10 at 01 26 53_bef521f2](https://github.com/user-attachments/assets/558eaaf9-c9c5-4777-be4c-8c9b6a1c9db1)
 
 **Game Flow:**
 1. **Learning Phase**: The child is shown 5 random shapes for memorization (5 seconds each)
@@ -53,7 +56,11 @@ GAMEPLAY PIC HERE
 
 This game measures working memory by testing a child's ability to associate names with faces.
 
-GAMEPLAY PIC HERE 
+![WhatsApp Image 2025-05-10 at 01 17 34_496da87c](https://github.com/user-attachments/assets/99c8e2ea-d325-4f76-b5f8-2b2c6863b592)
+![WhatsApp Image 2025-05-10 at 01 17 35_c8c8dc2d](https://github.com/user-attachments/assets/a33b5c3e-9f05-4798-ad4e-f353c7384bf8)
+![WhatsApp Image 2025-05-10 at 01 17 35_467c8599](https://github.com/user-attachments/assets/184e6a48-f1b3-47f8-afa2-5ec1edfafba2)
+
+
 
 **Game Flow:**
 1. **Learning Phase**: The child is shown 5 faces with their corresponding Arabic names
