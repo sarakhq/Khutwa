@@ -91,39 +91,48 @@ accuracy_summary["Advance"] = accuracy_summary["Performance_Level"] >= 4 #Flag t
 print("\nGrouped Series-Level Summary (accuracy_summary):")
 print(accuracy_summary.head())
 
-# Note: The game_sessions.csv file contains real-time session data collected from players.
-# This data can be used to continuously retrain and improve the model over time.
 
-# Train the model using summarized performance data
-features = ["Accuracy_Score", "Time_Score", "Engagement_Score"]
-X = accuracy_summary[features]
-y = accuracy_summary["Performance_Level"]
+#Make copy of the deneraget Synthetic data
+synthetic_df = accuracy_summary.copy()
 
-X_train, X_test, y_train, y_test = train_test_split(
-    X, y, test_size=0.2, random_state=42
-)
+#Load real session data (From the game)
+real_df = pd.read_csv("game_sessions.csv")
+
+
+#combine Both
+cols = ["Accuracy_Score", "Time_Score", "Engagement_Score", "Performance_Level", "Total_Score"]
+synthetic_clean = accuracy_summary[cols]
+real_clean = real_df[cols]
+
+combined_df = pd.concat([synthetic_clean, real_clean], ignore_index=True)
+
+
+
+# Train the model
+X = combined_df[["Accuracy_Score", "Time_Score", "Engagement_Score"]]
+y = combined_df["Performance_Level"]
+
+X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
 
 model = RandomForestClassifier(random_state=42)
 model.fit(X_train, y_train)
+
+# Evaluate
 y_pred = model.predict(X_test)
-
-
-print("\nModel Evaluation:")
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print("Classification Report:\n", classification_report(y_test, y_pred, zero_division=0))
 
 
-
-# Predictions
+# Predictions to check over/under fit
 train_preds = model.predict(X_train)
 test_preds = model.predict(X_test)
 
 # Accuracy scores
 train_acc = accuracy_score(y_train, train_preds)
 test_acc = accuracy_score(y_test, test_preds)
-
 print(f"Training Accuracy: {train_acc:.2f}")
 print(f"Test Accuracy: {test_acc:.2f}")
+
 
 
 #export model to use it in game
