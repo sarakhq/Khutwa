@@ -25,9 +25,7 @@ khutwa/
 ├── geometric shapes dataset.zip            # compressed shapes dataset
 ├── list_learning_dataset (1).csv           # verbal memory CSV
 ├── game_sessions.csv                       # Names-Faces session logs
-├── Shapes_game_sessions.csv                # Shapes session logs
-├── requirements.txt                        # Python dependencies
-└── README.md                               # this file
+└── Shapes_game_sessions.csv                # Shapes session logs
 
 # Once unzipped, “geometric shapes dataset” expands into:
 geometric shapes dataset/
