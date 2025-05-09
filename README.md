@@ -154,6 +154,3 @@ session_data = {
 
 This project is part of an initiative to support children affected by conflict in Yemen. It draws inspiration from clinical memory assessment techniques and applies them in an engaging, therapeutic context.
 
-## License
-
-[MIT License](LICENSE)
