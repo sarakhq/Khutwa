@@ -30,7 +30,7 @@ khutwa/
 └── README.md                               # this file
 
 # Once unzipped, “geometric shapes dataset” expands into:
-datasets/geometric shapes dataset/
+geometric shapes dataset/
 ├── Square/
 ├── Triangle/
 └── Circle/
