@@ -16,21 +16,25 @@ This repository contains the memory assessment components of Khutwa, featuring g
 
 ```
 khutwa/
-│── Game-DelayedVisualRecognition.py  # Long-term visual memory assessment
-│── Game-namesFaces.py               # Working memory for name-face associations
-│─ Model-delayedVisualRecognition.py # Visual recognition model training
-│── Model-namesFaces.py              # Names-faces association model training
-│── Model-listLearning.py            # List learning model training
-├─ geometric shapes dataset/        # Visual shapes for recognition tasks
-│   ├── Square/
-│   ├── Triangle/
-│   └── Circle/
-├── RenamedFaces/                    # Face images with Arabic names
-│── list_learning_dataset.csv        # Verbal memory dataset
-├
-├── game_sessions.csv                # Names-faces game session data
-│── Shapes_game_sessions.csv         # Shape recognition session data
-└── requirements.txt                     # Dependencies
+├── 20Faces - Copy/                         # raw face images (before renaming)
+├── Game-DelayedVisualRecognition.py        # long-term visual memory game
+├── Game-namesFaces.py                      # name–face association game
+├── Model-delayedVisualRecognition.py       # train visual recognition model
+├── Model-listLearning.py                   # train list learning model
+├── Model-namesFaces.py                     # train names-faces model
+├── geometric shapes dataset.zip            # compressed shapes dataset
+├── list_learning_dataset (1).csv           # verbal memory CSV
+├── game_sessions.csv                       # Names-Faces session logs
+├── Shapes_game_sessions.csv                # Shapes session logs
+├── requirements.txt                        # Python dependencies
+└── README.md                               # this file
+
+# Once unzipped, “geometric shapes dataset” expands into:
+datasets/geometric shapes dataset/
+├── Square/
+├── Triangle/
+└── Circle/
+
 ```
 
 ## Memory Assessment Games
