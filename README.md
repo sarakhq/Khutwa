@@ -16,25 +16,20 @@ This repository contains the memory assessment components of Khutwa, featuring g
 
 ```
 khutwa/
-├── games/
-│   ├── Game-DelayedVisualRecognition.py  # Long-term visual memory assessment
-│   ├── Game-namesFaces.py               # Working memory for name-face associations
-│   └── [Game-ListLearning.py]           # Short-term verbal memory assessment
-├── models/
-│   ├── Model-delayedVisualRecognition.py # Visual recognition model training
-│   ├── Model-namesFaces.py              # Names-faces association model training
-│   └── Model-listLearning.py            # List learning model training
-├── datasets/
-│   ├── geometric shapes dataset/        # Visual shapes for recognition tasks
-│   │   ├── Square/
-│   │   ├── Triangle/
-│   │   └── Circle/
-│   ├── RenamedFaces/                    # Face images with Arabic names
-│   └── list_learning_dataset.csv        # Verbal memory dataset
-├── results/
-│   ├── visual_recognition_sessions.csv  # Session data for continuous learning
-│   ├── game_sessions.csv                # Names-faces game session data
-│   └── Shapes_game_sessions.csv         # Shape recognition session data
+│── Game-DelayedVisualRecognition.py  # Long-term visual memory assessment
+│── Game-namesFaces.py               # Working memory for name-face associations
+│─ Model-delayedVisualRecognition.py # Visual recognition model training
+│── Model-namesFaces.py              # Names-faces association model training
+│── Model-listLearning.py            # List learning model training
+├─ geometric shapes dataset/        # Visual shapes for recognition tasks
+│   ├── Square/
+│   ├── Triangle/
+│   └── Circle/
+├── RenamedFaces/                    # Face images with Arabic names
+│── list_learning_dataset.csv        # Verbal memory dataset
+├
+├── game_sessions.csv                # Names-faces game session data
+│── Shapes_game_sessions.csv         # Shape recognition session data
 └── requirements.txt                     # Dependencies
 ```
 
