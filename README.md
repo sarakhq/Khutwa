@@ -16,7 +16,7 @@ This repository contains the memory assessment components of Khutwa, featuring g
 
 ```
 khutwa/
-├── 20Faces - Copy/                         # raw face images (before renaming)
+├── 20Faces - Copy                         # raw face images (before renaming)
 ├── Game-DelayedVisualRecognition.py        # long-term visual memory game
 ├── Game-namesFaces.py                      # name–face association game
 ├── Model-delayedVisualRecognition.py       # train visual recognition model
