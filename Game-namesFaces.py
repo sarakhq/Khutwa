@@ -6,6 +6,8 @@ import pandas as pd
 import arabic_reshaper
 from bidi.algorithm import get_display
 import joblib
+import csv
+from datetime import datetime
 
 
 model = joblib.load("model_names_faces.pkl")
@@ -100,3 +102,28 @@ print(f"Accuracy: {accuracy * 100:.1f}%")
 print(f"Average Reaction Time: {avg_time:.2f} sec")
 print(f"Total Score: {total_score:.2f}")
 print(f"Performance Level: {performance_level}")
+
+
+
+#----------Save the Results to CVS----------
+# Define new session row
+session_data = {
+    "Timestamp": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+    "Accuracy_Score": accuracy,
+    "Time_Score": time_score,
+    "Engagement_Score": engagement_score,
+    "Total_Score": total_score,
+    "Performance_Level": performance_level
+}
+
+# Append to the CSV
+file_path = "game_sessions.csv"
+file_exists = os.path.isfile(file_path)
+
+with open(file_path, mode='a', newline='', encoding='utf-8') as f:
+    writer = csv.DictWriter(f, fieldnames=session_data.keys())
+    if not file_exists:
+        writer.writeheader()
+    writer.writerow(session_data)
+
+print("Session saved to game_sessions.csv for continues model learning")
