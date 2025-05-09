@@ -21,8 +21,8 @@ faces_folder = "RenamedFaces"
 face_files = [f for f in os.listdir(faces_folder) if f.endswith(".png")]
 
 
-# Show random face-name pairs for learning (The number can be adjested based on
-#  the diffecelty needed, and the child's preformance)
+# Show random face-name pairs for learning 
+# (The number can be adjested based on the difficulty needed, and the child's preformance)
 total_trials = 5
 learning_faces = random.sample(face_files, total_trials)
 
@@ -33,7 +33,7 @@ for face in learning_faces:
     img = Image.open(img_path)
     img.show()
     
-    name = face.split('.')[0]
+    name = face.split('.')[0]    #from the rpefex
     print(f" Name: {display_arabic(name)}")
     
     time.sleep(3)  # show for 3 seconds
@@ -57,19 +57,19 @@ for face in learning_faces:
     # Wait 3 seconds
     time.sleep(3)
 
-    # Close the image (this works on Windows)
+    # Close the image 
     os.system("taskkill /f /im Microsoft.Photos.exe >nul 2>&1")
 
     
     start = time.time()
-    answer = input("Who is this? (Type the Arabic name): ").strip()
+    answer = input("Who is this? (Type the Arabic name): ").strip()  #time taken to answer
     end = time.time()
     
     img.close()
     reaction_time = end - start
     reaction_times.append(reaction_time)
 
-    if answer == correct_name:
+    if answer == correct_name:  #check 
         print("Correct!")
         correct_count += 1
     else:
@@ -79,8 +79,8 @@ for face in learning_faces:
 # Calculate Scores
 accuracy = correct_count / total_trials
 avg_time = sum(reaction_times) / total_trials
-time_score = max(0, 1 - avg_time)  # same formula as training
-engagement_score = 0.85  # static for now
+time_score = max(0, 1 - avg_time) 
+engagement_score = 0.85  # static for now 
 
 # Total score and level
 total_score = accuracy * 0.6 + time_score * 0.3 + engagement_score * 0.1
