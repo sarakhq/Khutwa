@@ -158,23 +158,35 @@ features = ['accuracy_score', 'time_score', 'engagement_score']
 #     plt.title(f"{feature} vs Performance Level")
 #     plt.show()
 
-plt.figure(figsize=(6, 4))
-sns.boxplot(x='performance_level', y='accuracy_score', data=df)
-plt.title("Accuracy Score vs Performance Level")
-plt.xlabel("Performance Level")
-plt.ylabel("Accuracy Score")
-plt.show()
+# plt.figure(figsize=(6, 4))
+# sns.boxplot(x='performance_level', y='accuracy_score', data=df)
+# plt.title("Accuracy Score vs Performance Level")
+# plt.xlabel("Performance Level")
+# plt.ylabel("Accuracy Score")
+# plt.show()
 
-#corr between features
+# #corr between features
 
-plt.figure(figsize=(8, 6))
-sns.heatmap(df[features + ['performance_level']].corr(), annot=True, cmap='coolwarm')
-plt.title("Correlation Heatmap")
-plt.show()
+# plt.figure(figsize=(8, 6))
+# sns.heatmap(df[features + ['performance_level']].corr(), annot=True, cmap='coolwarm')
+# plt.title("Correlation Heatmap")
+# plt.show()
 
 
-sns.lmplot(x='performance_level', y='accuracy_score', data=df)
-plt.title("Linear Relationship Between Performance Level and Accuracy Score")
-plt.xlabel("Performance Level")
-plt.ylabel("Accuracy Score")
-plt.show()
+# sns.lmplot(x='performance_level', y='accuracy_score', data=df)
+# plt.title("Linear Relationship Between Performance Level and Accuracy Score")
+# plt.xlabel("Performance Level")
+# plt.ylabel("Accuracy Score")
+# plt.show()
+
+
+train_preds = model.predict(X_train)
+test_preds = model.predict(X_test)
+
+# Accuracy scores
+train_acc = accuracy_score(y_train, train_preds)
+test_acc = accuracy_score(y_test, test_preds)
+
+print(f"Training Accuracy: {train_acc:.2f}")
+print(f"Test Accuracy: {test_acc:.2f}")
+
