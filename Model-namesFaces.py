@@ -9,12 +9,11 @@ from sklearn.metrics import confusion_matrix
 import seaborn as sns
 import matplotlib.pyplot as plt
 import joblib
+from sklearn.metrics import accuracy_score
 
-# Display all rows/columns for better visualisation 
-pd.set_option('display.max_columns', None)
-pd.set_option('display.max_rows', None)
+#Display all rows/columns when printing for better visualisation 
 pd.set_option('display.width', None)
-pd.set_option('display.float_format', '{:.6f}'.format)
+pd.set_option('display.float_format', '{:.3f}'.format)
 
 
 # Map Faces to Arabic Names
@@ -28,7 +27,7 @@ source_folder = "20Faces - Copy"
 destination_folder = "RenamedFaces"
 os.makedirs(destination_folder, exist_ok=True)
 for filename in os.listdir(source_folder):
-    prefix = filename.split('_')[0]
+    prefix = filename.split('_')[0] #each origenal pic is labeled with format: name_XXX
     if prefix in rename_map:
         new_name = f"{rename_map[prefix]}.png"
         src_path = os.path.join(source_folder, filename)
@@ -37,14 +36,13 @@ for filename in os.listdir(source_folder):
             shutil.copyfile(src_path, dst_path)
 
 
-#Raw data input
-
+#Raw data input, following the MAS style
 np.random.seed(42)
 participants = 50
 trials_per_series = 10
 series_labels = ["A", "B"]
 
-# Raw trial data (no scoring here)
+#Raw trial data (no scoring here)
 df = pd.DataFrame({
     "Subject_ID": np.repeat(np.arange(1, participants + 1), trials_per_series * 2),
     "Series": np.tile(np.repeat(series_labels, trials_per_series), participants),
@@ -58,10 +56,11 @@ print("\nRaw Trial-Level Data (df):")
 print(df.head())
 
 
-#Grouped series summary
+#Grouped series summary (at the end of the series, calculate scores)
 def compute_time_score(rt, max_time=8.0):
     return max(0, 1 - rt / max_time)
 
+#set threshholds
 def get_level(score):
     if score >= 0.85: return 5
     elif score >= 0.65: return 4
@@ -79,6 +78,7 @@ accuracy_summary.rename(columns={"Correct": "Correct_Count"}, inplace=True)
 accuracy_summary["Accuracy_Score"] = accuracy_summary["Correct_Count"] / 10
 accuracy_summary["Time_Score"] = accuracy_summary["Reaction_Time_Avg"].apply(compute_time_score)
 
+#Formela
 accuracy_summary["Total_Score"] = (
     accuracy_summary["Accuracy_Score"] * 0.6 +
     accuracy_summary["Time_Score"] * 0.3 +
@@ -86,13 +86,15 @@ accuracy_summary["Total_Score"] = (
 )
 
 accuracy_summary["Performance_Level"] = accuracy_summary["Total_Score"].apply(get_level)
-accuracy_summary["Advance"] = accuracy_summary["Performance_Level"] >= 4
+accuracy_summary["Advance"] = accuracy_summary["Performance_Level"] >= 4 #Flag to go to next level
 
 print("\nGrouped Series-Level Summary (accuracy_summary):")
 print(accuracy_summary.head())
 
+# Note: The game_sessions.csv file contains real-time session data collected from players.
+# This data can be used to continuously retrain and improve the model over time.
 
-#Train the model
+# Train the model using summarized performance data
 features = ["Accuracy_Score", "Time_Score", "Engagement_Score"]
 X = accuracy_summary[features]
 y = accuracy_summary["Performance_Level"]
@@ -110,15 +112,19 @@ print("\nModel Evaluation:")
 print("Accuracy:", accuracy_score(y_test, y_pred))
 print("Classification Report:\n", classification_report(y_test, y_pred, zero_division=0))
 
+
+
+# Predictions
+train_preds = model.predict(X_train)
+test_preds = model.predict(X_test)
+
+# Accuracy scores
+train_acc = accuracy_score(y_train, train_preds)
+test_acc = accuracy_score(y_test, test_preds)
+
+print(f"Training Accuracy: {train_acc:.2f}")
+print(f"Test Accuracy: {test_acc:.2f}")
+
+
 #export model to use it in game
 joblib.dump(model, "model_names_faces.pkl")
-
-# cm = confusion_matrix(y_test, y_pred)
-# sns.heatmap(cm, annot=True, fmt="d", cmap="Blues",
-#             xticklabels=sorted(y.unique()),
-#             yticklabels=sorted(y.unique()))
-# plt.xlabel("Predicted")
-# plt.ylabel("Actual")
-# plt.title("Confusion Matrix")
-# plt.show()
-
