@@ -69,6 +69,22 @@ summary_df["Advance"] = summary_df["Performance_Level"] >= 4
 print("\nGrouped Subject-Level Summary (accuracy_summary)::")
 print(summary_df.head())
 
+
+#Make copy of the deneraget Synthetic data
+synthetic_df = summary_df.copy()
+
+#Load real session data (From the game)
+real_df = pd.read_csv("game_sessions.csv")
+
+
+#combine Both
+cols = ["Accuracy_Score", "Time_Score", "Engagement_Score", "Performance_Level", "Total_Score"]
+synthetic_clean =  summary_df[cols]
+real_clean = real_df[cols]
+
+combined_df = pd.concat([synthetic_clean, real_clean], ignore_index=True)
+
+
 # Train the model
 features = ["Accuracy_Score", "Time_Score", "Engagement_Score"]
 X = summary_df[features]
